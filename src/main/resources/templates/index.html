@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Шифрування тексту</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-$END$
+<div class="container">
+  <h1>Шифрування тексту</h1>
+
+  <form action="/cipher/caesar" method="post">
+    <h2>Шифр Цезаря</h2>
+    <label>Текст:</label>
+    <input type="text" name="text" required>
+    <label>Зсув:</label>
+    <input type="number" name="shift" required>
+    <button type="submit">Зашифрувати</button>
+  </form>
+
+  <form action="/cipher/vigenere" method="post">
+    <h2>Шифр Віженера</h2>
+    <label>Текст:</label>
+    <input type="text" name="text" required>
+    <label>Ключ:</label>
+    <input type="text" name="key" required>
+    <button type="submit">Зашифрувати</button>
+  </form>
+
+  <form action="/cipher/xor" method="post">
+    <h2>XOR-гаммування</h2>
+    <label>Текст:</label>
+    <input type="text" name="text" required>
+    <label>Ключ:</label>
+    <input type="text" name="key" required>
+    <button type="submit">Зашифрувати</button>
+  </form>
+
+  <div class="result" th:if="${encryptedText}">
+    <h2>Результати</h2>
+    <p>Оригінальний текст: <b th:text="${originalText}"></b></p>
+    <p>Зашифрований текст: <b th:text="${encryptedText}"></b></p>
+    <p>Розшифрований текст: <b th:text="${decryptedText}"></b></p>
+  </div>
+</div>
 </body>
 </html>
